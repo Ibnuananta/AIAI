@@ -4,48 +4,72 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AIAI</title>
-  <link rel="stylesheet" href="./style.css?v=3" />
+  <link rel="stylesheet" href="./style.css?v=4" />
 </head>
 <body>
+  <div class="galaxy-bg" aria-hidden="true">
+    <span class="orb orb-one"></span>
+    <span class="orb orb-two"></span>
+    <span class="orb orb-three"></span>
+    <span class="star star-one">✦</span>
+    <span class="star star-two">✧</span>
+    <span class="star star-three">✺</span>
+  </div>
+
   <main class="chatgpt-shell">
     <header class="topbar">
       <div class="topbar-inner">
-        <div class="brand-mark">A</div>
+        <div class="brand-mark">✦</div>
         <div class="brand-copy">
-          <p class="eyebrow">Private AI assistant</p>
+          <p class="eyebrow">Private thinking space</p>
           <h1>AIAI</h1>
         </div>
+        <nav class="top-actions" aria-label="Quick actions">
+          <span>Notes</span>
+          <span>Search</span>
+          <span>AI</span>
+        </nav>
         <span class="status-pill">Online</span>
       </div>
     </header>
 
     <section class="conversation" aria-label="AI chatbot">
-      <div id="chatBox" class="chat-box">
-        <div class="message-row assistant-row">
-          <div class="avatar assistant-avatar">A</div>
-          <div class="message-content">
-            <div class="message-name">AIAI</div>
-            <div class="message-text">Halo, aku AIAI. Ada yang bisa aku bantu hari ini?</div>
+      <div class="workspace-panel">
+        <aside class="quiet-sidebar" aria-label="Workspace shortcuts">
+          <button class="sidebar-item" type="button">☾ Daily</button>
+          <button class="sidebar-item" type="button">✦ Ideas</button>
+          <button class="sidebar-item" type="button">⌘ Search</button>
+        </aside>
+
+        <div class="chat-area">
+          <div id="chatBox" class="chat-box">
+            <div class="message-row assistant-row">
+              <div class="avatar assistant-avatar">✦</div>
+              <div class="message-content">
+                <div class="message-name">AIAI</div>
+                <div class="message-text">Halo, aku AIAI. Ada yang bisa aku bantu hari ini?</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="composer-wrap">
+            <form id="chatForm" class="chat-form">
+              <input
+                type="text"
+                id="userInput"
+                placeholder="Tulis ide, pertanyaan, atau hal yang mau kamu bahas..."
+                autocomplete="off"
+                required
+              />
+              <button type="submit" aria-label="Kirim pesan">✦</button>
+            </form>
+            <p class="composer-note">AIAI dapat membuat kesalahan. Periksa kembali jawaban penting.</p>
           </div>
         </div>
-      </div>
-
-      <div class="composer-wrap">
-        <form id="chatForm" class="chat-form">
-          <input
-            type="text"
-            id="userInput"
-            placeholder="Ketik pesan untuk AIAI..."
-            autocomplete="off"
-            required
-          />
-          <button type="submit" aria-label="Kirim pesan">➜</button>
-        </form>
-        <p class="composer-note">AIAI dapat membuat kesalahan. Periksa kembali jawaban penting.</p>
       </div>
     </section>
   </main>
 
-  <script src="./script.js?v=3"></script>
+  <script src="./script.js?v=4"></script>
 </body>
 </html>
