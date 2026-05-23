@@ -4,6 +4,11 @@ const chatForm = document.getElementById("chatForm");
 const userInput = document.getElementById("userInput");
 const chatBox = document.getElementById("chatBox");
 const submitButton = chatForm.querySelector("button");
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = themeToggle?.querySelector(".theme-icon");
+const themeLabel = themeToggle?.querySelector(".theme-label");
+
+initTheme();
 
 chatForm.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -44,13 +49,40 @@ chatForm.addEventListener("submit", async function (event) {
   }
 });
 
+if (themeToggle) {
+  themeToggle.addEventListener("click", function () {
+    const currentTheme = document.documentElement.dataset.theme || "light";
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+    localStorage.setItem("aiai-theme", nextTheme);
+  });
+}
+
+function initTheme() {
+  const savedTheme = localStorage.getItem("aiai-theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
+  applyTheme(initialTheme);
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+
+  if (!themeToggle || !themeIcon || !themeLabel) return;
+
+  const isDark = theme === "dark";
+  themeToggle.setAttribute("aria-pressed", String(isDark));
+  themeIcon.textContent = isDark ? "☀" : "☾";
+  themeLabel.textContent = isDark ? "Light" : "Dark";
+}
+
 function addMessage(text, role, isLoading = false) {
   const row = document.createElement("div");
   row.className = `message-row ${role === "user" ? "user-row" : "assistant-row"}`;
 
   const avatar = document.createElement("div");
   avatar.className = `avatar ${role === "user" ? "user-avatar" : "assistant-avatar"}`;
-  avatar.textContent = role === "user" ? "I" : "A";
+  avatar.textContent = role === "user" ? "I" : "✦";
 
   const content = document.createElement("div");
   content.className = "message-content";
@@ -76,5 +108,5 @@ function addMessage(text, role, isLoading = false) {
 
 function setLoading(isLoading) {
   submitButton.disabled = isLoading;
-  submitButton.textContent = isLoading ? "…" : "➜";
+  submitButton.textContent = isLoading ? "…" : "✦";
 }
