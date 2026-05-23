@@ -1,21 +1,23 @@
 :root {
   color-scheme: light;
   --color-bg: #FAF8F3;
-  --color-surface: #FFFFFF;
-  --color-surface-soft: #F3F0E8;
+  --color-surface: rgba(255, 255, 255, 0.78);
+  --color-surface-strong: rgba(255, 255, 255, 0.92);
+  --color-surface-soft: rgba(243, 240, 232, 0.72);
   --color-surface-muted: #ECE7DC;
   --color-text: #1E1C18;
   --color-text-muted: #6F6A60;
   --color-text-soft: #9B9488;
   --color-border: #E2DCCD;
-  --color-border-soft: #EEE8DC;
+  --color-border-soft: rgba(238, 232, 220, 0.82);
   --color-primary: #7C5CFF;
   --color-primary-hover: #6848F5;
   --color-primary-soft: #EEE9FF;
   --color-success: #3D8B5F;
   --color-danger: #C44D4D;
   --shadow-sm: 0 8px 24px rgba(30, 28, 24, 0.05);
-  --shadow-md: 0 16px 40px rgba(30, 28, 24, 0.08);
+  --shadow-md: 0 18px 50px rgba(30, 28, 24, 0.1);
+  --shadow-lg: 0 28px 90px rgba(30, 28, 24, 0.13);
 }
 
 * {
@@ -37,7 +39,11 @@ body {
   overflow: hidden;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--color-text);
-  background: var(--color-bg);
+  background:
+    radial-gradient(circle at 16% 12%, rgba(124, 92, 255, 0.16), transparent 28rem),
+    radial-gradient(circle at 78% 22%, rgba(185, 170, 255, 0.2), transparent 24rem),
+    radial-gradient(circle at 56% 82%, rgba(255, 240, 214, 0.95), transparent 28rem),
+    var(--color-bg);
 }
 
 body::before {
@@ -45,10 +51,66 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    radial-gradient(circle at top, rgba(124, 92, 255, 0.08), transparent 34rem),
-    linear-gradient(180deg, #FFFCF6 0%, transparent 52%);
+  background-image:
+    radial-gradient(circle, rgba(124, 92, 255, 0.34) 1px, transparent 1.8px),
+    radial-gradient(circle, rgba(30, 28, 24, 0.12) 1px, transparent 1.6px);
+  background-position: 0 0, 34px 46px;
+  background-size: 96px 96px, 142px 142px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.16), transparent 88%);
 }
+
+.galaxy-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb,
+.star {
+  position: absolute;
+  display: block;
+}
+
+.orb {
+  border-radius: 999px;
+  filter: blur(2px);
+  opacity: 0.55;
+}
+
+.orb-one {
+  width: 260px;
+  height: 260px;
+  left: -72px;
+  top: 110px;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.2), transparent 68%);
+}
+
+.orb-two {
+  width: 360px;
+  height: 360px;
+  right: -120px;
+  top: 80px;
+  background: radial-gradient(circle, rgba(169, 151, 255, 0.22), transparent 68%);
+}
+
+.orb-three {
+  width: 230px;
+  height: 230px;
+  right: 20%;
+  bottom: -92px;
+  background: radial-gradient(circle, rgba(236, 231, 220, 0.8), transparent 68%);
+}
+
+.star {
+  color: rgba(124, 92, 255, 0.42);
+  font-size: 22px;
+  text-shadow: 0 0 24px rgba(124, 92, 255, 0.22);
+}
+
+.star-one { left: 10%; top: 18%; }
+.star-two { right: 16%; top: 20%; font-size: 18px; }
+.star-three { left: 72%; bottom: 20%; font-size: 14px; }
 
 .chatgpt-shell {
   position: relative;
@@ -56,25 +118,29 @@ body::before {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 18px;
 }
 
 .topbar {
   flex: 0 0 72px;
   height: 72px;
-  padding: 0 24px;
   display: flex;
   align-items: center;
-  background: rgba(250, 248, 243, 0.9);
-  border-bottom: 1px solid var(--color-border-soft);
-  backdrop-filter: blur(20px);
 }
 
 .topbar-inner {
-  width: min(860px, 100%);
+  width: min(1120px, 100%);
+  height: 100%;
   margin: 0 auto;
+  padding: 0 18px;
   display: flex;
   align-items: center;
   gap: 12px;
+  background: rgba(255, 255, 255, 0.54);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 24px;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(22px);
 }
 
 .brand-mark,
@@ -87,11 +153,12 @@ body::before {
 }
 
 .brand-mark {
-  width: 36px;
-  height: 36px;
-  background: var(--color-primary-soft);
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-primary-soft), rgba(255, 255, 255, 0.92));
   color: var(--color-primary);
   border: 1px solid rgba(124, 92, 255, 0.16);
+  box-shadow: inset 0 0 20px rgba(124, 92, 255, 0.08);
 }
 
 .brand-copy {
@@ -114,8 +181,26 @@ h1 {
   line-height: 1.2;
 }
 
-.status-pill {
+.top-actions {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.top-actions span {
+  padding: 8px 10px;
+  border-radius: 999px;
+}
+
+.top-actions span:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.status-pill {
   padding: 4px 9px;
   border-radius: 999px;
   background: rgba(61, 139, 95, 0.12);
@@ -129,16 +214,73 @@ h1 {
   flex: 1;
   min-height: 0;
   display: flex;
+  padding-top: 18px;
+}
+
+.workspace-panel {
+  width: min(1120px, 100%);
+  min-height: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid var(--color-border-soft);
+  border-radius: 28px;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(24px);
+}
+
+.quiet-sidebar {
+  padding: 18px 12px;
+  background: rgba(243, 240, 232, 0.58);
+  border-right: 1px solid var(--color-border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item {
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: default;
+}
+
+.sidebar-item:first-child,
+.sidebar-item:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.chat-area {
+  min-height: 0;
+  display: flex;
   flex-direction: column;
 }
 
 .chat-box {
   flex: 1;
   min-height: 0;
-  width: min(860px, 100%);
+  width: min(820px, 100%);
   margin: 0 auto;
-  padding: 32px 20px 24px;
+  padding: 34px 24px 24px;
   overflow-y: auto;
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: rgba(124, 92, 255, 0.16);
+  border-radius: 999px;
+  border: 3px solid rgba(250, 248, 243, 0.7);
 }
 
 .message-row {
@@ -146,7 +288,7 @@ h1 {
   grid-template-columns: 36px minmax(0, 1fr);
   gap: 14px;
   padding: 22px 0;
-  border-bottom: 1px solid var(--color-border-soft);
+  border-bottom: 1px solid rgba(226, 220, 205, 0.58);
 }
 
 .message-row:last-child {
@@ -201,7 +343,7 @@ h1 {
   max-width: 100%;
   padding: 10px 14px;
   border-radius: 18px;
-  background: var(--color-surface);
+  background: var(--color-surface-strong);
   border: 1px solid var(--color-border-soft);
   box-shadow: var(--shadow-sm);
 }
@@ -218,18 +360,18 @@ h1 {
 
 .composer-wrap {
   flex: 0 0 auto;
-  padding: 14px 20px 20px;
-  background: linear-gradient(180deg, rgba(250, 248, 243, 0), var(--color-bg) 22%);
+  padding: 14px 24px 22px;
+  background: linear-gradient(180deg, rgba(250, 248, 243, 0), rgba(250, 248, 243, 0.72) 22%);
 }
 
 .chat-form {
-  width: min(860px, 100%);
+  width: min(820px, 100%);
   margin: 0 auto;
   padding: 10px;
   display: flex;
   gap: 10px;
   align-items: center;
-  background: var(--color-surface);
+  background: var(--color-surface-strong);
   border: 1px solid var(--color-border);
   border-radius: 26px;
   box-shadow: var(--shadow-md);
@@ -266,7 +408,7 @@ h1 {
   background: var(--color-primary);
   color: #FFFFFF;
   font-family: inherit;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   cursor: pointer;
   display: grid;
@@ -284,7 +426,7 @@ h1 {
 }
 
 .composer-note {
-  width: min(860px, 100%);
+  width: min(820px, 100%);
   margin: 8px auto 0;
   color: var(--color-text-soft);
   font-size: 12px;
@@ -292,11 +434,40 @@ h1 {
   line-height: 1.4;
 }
 
+@media (max-width: 820px) {
+  body {
+    overflow: auto;
+  }
+
+  .chatgpt-shell {
+    min-height: 100vh;
+    height: auto;
+    padding: 12px;
+  }
+
+  .workspace-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .quiet-sidebar,
+  .top-actions {
+    display: none;
+  }
+
+  .conversation {
+    min-height: calc(100vh - 96px);
+  }
+}
+
 @media (max-width: 640px) {
   .topbar {
     height: 64px;
     flex-basis: 64px;
-    padding: 0 14px;
+  }
+
+  .topbar-inner {
+    border-radius: 20px;
+    padding: 0 12px;
   }
 
   .chat-box {
