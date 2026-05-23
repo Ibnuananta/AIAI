@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIAI Chatbot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card">
+      <div class="brand-row">
+        <div class="brand-icon">AI</div>
+        <div>
+          <p class="eyebrow">GitHub Pages + Cloudflare Worker + Gemini</p>
+          <h1>AIAI Chatbot</h1>
+        </div>
+      </div>
+
+      <p class="hero-text">
+        Chatbot AI sederhana yang berjalan di GitHub Pages dengan backend aman melalui Cloudflare Worker.
+      </p>
+    </section>
+
+    <section class="chat-container" aria-label="AI chatbot">
+      <header class="chat-header">
+        <div>
+          <h2>AIAI Assistant</h2>
+          <p>Online dan siap menjawab pertanyaanmu.</p>
+        </div>
+        <span class="status-pill">Live</span>
+      </header>
+
+      <div id="chatBox" class="chat-box">
+        <div class="bot-message message">
+          Halo! Aku AIAI. Tanyakan apa saja, nanti aku jawab pakai Gemini.
+        </div>
+      </div>
+
+      <form id="chatForm" class="chat-form">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Tulis pesan di sini..."
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Kirim</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
